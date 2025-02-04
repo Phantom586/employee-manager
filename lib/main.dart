@@ -1,8 +1,12 @@
+import 'package:employee_manager/config/dependency_locator.dart';
 import 'package:employee_manager/config/styles.dart';
 import 'package:employee_manager/router/router.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  initDependencyLocator();
+  await getIt.allReady();
+
   runApp(const MyApp());
 }
 
