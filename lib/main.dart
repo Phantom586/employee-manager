@@ -1,3 +1,5 @@
+import 'package:employee_manager/config/styles.dart';
+import 'package:employee_manager/router/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,9 +9,14 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return MaterialApp.router(
+      routerConfig: router,
+      theme: ThemeData(
+        primaryColor: primaryColor,
+        primaryColorDark: primaryColorDark,
+      ),
+    );
   }
 }
