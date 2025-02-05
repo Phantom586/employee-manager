@@ -5,11 +5,13 @@ import 'package:employee_manager/src/employee/domain/index.dart' show Employee;
 abstract class EmployeeRepository {
   ResultVoid insertEmployee({required EmployeeEntity employee});
 
-  ResultFuture<Employee> fetchEmployeeById({required String employeeId});
+  ResultVoid updateEmployee({required EmployeeEntity employee});
 
-  ResultFuture<List<Employee>> fetchPreviousEmployees();
+  ResultFuture<Employee?> fetchEmployeeById({required String employeeId});
 
-  ResultFuture<List<Employee>> fetchCurrentEmployees();
+  ResultFuture<List<Employee>?> fetchPreviousEmployees();
+
+  ResultFuture<List<Employee>?> fetchCurrentEmployees();
 
   ResultVoid deleteEmployeeById({required String employeeId});
 

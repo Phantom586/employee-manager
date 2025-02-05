@@ -28,7 +28,18 @@ class EmployeeRepositoryImpl implements EmployeeRepository {
   }
 
   @override
-  ResultFuture<Employee> fetchEmployeeById({required String employeeId}) async {
+  ResultVoid updateEmployee({required EmployeeEntity employee}) async {
+    try {
+      await _localDatasource.updateEmployee(employee: employee);
+      return const Right(null);
+    } on APIException catch (e) {
+      return Left(DatabaseFailure.fromException(exception: e));
+    }
+  }
+
+  @override
+  ResultFuture<Employee?> fetchEmployeeById(
+      {required String employeeId}) async {
     try {
       final employee =
           await _localDatasource.fetchEmployeeById(employeeId: employeeId);
@@ -39,26 +50,42 @@ class EmployeeRepositoryImpl implements EmployeeRepository {
   }
 
   @override
-  ResultFuture<List<Employee>> fetchCurrentEmployees() {
-    // TODO: implement fetchCurrentEmployees
-    throw UnimplementedError();
+  ResultFuture<List<Employee>?> fetchCurrentEmployees() async {
+    try {
+      final employees = await _localDatasource.fetchCurrentEmployees();
+      return employees;
+    } on APIException catch (e) {
+      return Left(DatabaseFailure.fromException(exception: e));
+    }
   }
 
   @override
-  ResultFuture<List<Employee>> fetchPreviousEmployees() {
-    // TODO: implement fetchPreviousEmployees
-    throw UnimplementedError();
+  ResultFuture<List<Employee>?> fetchPreviousEmployees() async {
+    try {
+      final employees = await _localDatasource.fetchPreviousEmployees();
+      return employees;
+    } on APIException catch (e) {
+      return Left(DatabaseFailure.fromException(exception: e));
+    }
   }
 
   @override
-  ResultVoid deleteEmployeeById({required String employeeId}) {
-    // TODO: implement deleteEmployeeById
-    throw UnimplementedError();
+  ResultVoid deleteEmployeeById({required String employeeId}) async {
+    try {
+      await _localDatasource.deleteEmployeeById(employeeId: employeeId);
+      return const Right(null);
+    } on APIException catch (e) {
+      return Left(DatabaseFailure.fromException(exception: e));
+    }
   }
 
   @override
-  ResultVoid deleteAllEmployees() {
-    // TODO: implement deleteAllEmployees
-    throw UnimplementedError();
+  ResultVoid deleteAllEmployees() async {
+    try {
+      await _localDatasource.deleteAllEmployees();
+      return const Right(null);
+    } on APIException catch (e) {
+      return Left(DatabaseFailure.fromException(exception: e));
+    }
   }
 }

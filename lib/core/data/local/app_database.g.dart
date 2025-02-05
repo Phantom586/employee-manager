@@ -135,8 +135,22 @@ class _$EmployeeDao extends EmployeeDao {
   final InsertionAdapter<EmployeeEntity> _employeeEntityInsertionAdapter;
 
   @override
-  Future<List<EmployeeEntity>?> getEmployees() async {
-    return _queryAdapter.queryList('SELECT * FROM employee',
+  Future<List<EmployeeEntity>?> getCurrentEmployees() async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM employee WHERE      startDate is NOT NULL AND endDate is NULL',
+        mapper: (Map<String, Object?> row) => EmployeeEntity(
+            id: row['id'] as int?,
+            name: row['name'] as String?,
+            role: row['role'] as String?,
+            startDate:
+                _dateTimeTypeConverter.decode(row['startDate'] as String),
+            endDate: _dateTimeTypeConverter.decode(row['endDate'] as String)));
+  }
+
+  @override
+  Future<List<EmployeeEntity>?> getPreviousEmployees() async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM employee WHERE      startDate is NOT NULL AND endDate is NOT NULL',
         mapper: (Map<String, Object?> row) => EmployeeEntity(
             id: row['id'] as int?,
             name: row['name'] as String?,
