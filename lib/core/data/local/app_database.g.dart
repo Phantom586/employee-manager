@@ -166,6 +166,11 @@ class _$EmployeeDao extends EmployeeDao {
   }
 
   @override
+  Future<void> deleteAllEmployees() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM employee');
+  }
+
+  @override
   Future<void> insert(EmployeeEntity employee) async {
     await _employeeEntityInsertionAdapter.insert(
         employee, OnConflictStrategy.replace);

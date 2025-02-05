@@ -1,7 +1,7 @@
-import 'package:employee_manager/config/dependency_locator.dart';
-import 'package:employee_manager/config/styles.dart';
-import 'package:employee_manager/router/router.dart';
+import 'package:employee_manager/core/config/index.dart';
 import 'package:flutter/material.dart';
+
+import 'core/index.dart' show router;
 
 void main() async {
   initDependencyLocator();

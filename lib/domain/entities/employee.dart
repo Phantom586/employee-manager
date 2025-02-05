@@ -1,19 +1,24 @@
-import 'package:equatable/equatable.dart';
+import 'package:employee_manager/core/data/index.dart' show EmployeeEntity;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Employee extends Equatable {
-  final int id;
-  final String name;
-  final String role;
-  final DateTime? startDate;
-  final DateTime? endDate;
+part 'employee.freezed.dart';
 
-  const Employee(
-      {required this.id,
-      required this.name,
-      required this.role,
-      this.startDate,
-      this.endDate});
+@freezed
+class Employee with _$Employee {
+  const factory Employee({
+    required int? id,
+    required String? name,
+    required String? role,
+    DateTime? startDate,
+    DateTime? endDate,
+  }) = _Employee;
 
-  @override
-  List<Object?> get props => [id];
+  factory Employee.fromEntity({required EmployeeEntity employeeEntity}) =>
+      Employee(
+        id: employeeEntity.id,
+        name: employeeEntity.name,
+        role: employeeEntity.role,
+        startDate: employeeEntity.startDate,
+        endDate: employeeEntity.endDate,
+      );
 }

@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:employee_manager/data/local/dao/employee_dao.dart';
-import 'package:employee_manager/data/local/model/employee.dart';
-import 'package:employee_manager/data/local/type_converters.dart';
+import 'package:employee_manager/core/index.dart'
+    show DateTimeTypeConverter, EmployeeEntity, EmployeeDao;
 import 'package:floor/floor.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 

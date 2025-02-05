@@ -1,5 +1,5 @@
-import 'package:employee_manager/data/local/app_database.dart';
-import 'package:employee_manager/data/local/dao/employee_dao.dart';
+import 'package:employee_manager/core/data/local/app_database.dart';
+import 'package:employee_manager/core/data/local/dao/employee_dao.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;

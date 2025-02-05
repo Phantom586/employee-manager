@@ -1,5 +1,5 @@
-import 'package:employee_manager/data/local/app_database.dart';
-import 'package:employee_manager/data/local/model/employee.dart';
+import 'package:employee_manager/core/index.dart'
+    show EmployeeEntity, SQLiteTableNames;
 import 'package:floor/floor.dart';
 
 @dao
@@ -15,4 +15,7 @@ abstract class EmployeeDao {
 
   @Query('DELETE FROM ${SQLiteTableNames.employee} WHERE id = :employeeId')
   Future<void> deleteEmployeeById(String employeeId);
+
+  @Query('DELETE FROM ${SQLiteTableNames.employee}')
+  Future<void> deleteAllEmployees();
 }
