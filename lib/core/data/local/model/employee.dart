@@ -1,5 +1,5 @@
 import 'package:employee_manager/core/index.dart' show SQLiteTableNames;
-import 'package:employee_manager/domain/index.dart' show Employee;
+import 'package:employee_manager/src/employee/domain/index.dart' show Employee;
 import 'package:equatable/equatable.dart';
 import 'package:floor/floor.dart';
 

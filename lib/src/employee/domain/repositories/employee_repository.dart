@@ -1,8 +1,9 @@
-import 'package:employee_manager/core/index.dart' show ResultFuture, ResultVoid;
-import 'package:employee_manager/domain/index.dart' show Employee;
+import 'package:employee_manager/core/index.dart'
+    show EmployeeEntity, ResultFuture, ResultVoid;
+import 'package:employee_manager/src/employee/domain/index.dart' show Employee;
 
-abstract class EmployeeLocalDatasource {
-  ResultVoid insertEmployee({required Employee employee});
+abstract class EmployeeRepository {
+  ResultVoid insertEmployee({required EmployeeEntity employee});
 
   ResultFuture<Employee> fetchEmployeeById({required String employeeId});
 

@@ -1,6 +1,6 @@
 import 'package:employee_manager/core/index.dart'
     show EmployeeEntity, ResultVoid;
-import 'package:employee_manager/domain/repositories/employee_repository.dart';
+import 'package:employee_manager/src/employee/domain/repositories/employee_repository.dart';
 
 class InsertEmployee {
   final EmployeeRepository _repository;

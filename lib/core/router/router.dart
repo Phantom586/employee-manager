@@ -1,8 +1,5 @@
-import 'package:employee_manager/presentation/employee_add/index.dart'
-    show EmployeeAddView;
-import 'package:employee_manager/presentation/employee_edit/index.dart'
-    show EmployeeEditView;
-import 'package:employee_manager/presentation/home/index.dart' show HomeView;
+import 'package:employee_manager/src/employee/index.dart'
+    show HomeView, EmployeeAddView, EmployeeEditView;
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(initialLocation: '/', routes: [

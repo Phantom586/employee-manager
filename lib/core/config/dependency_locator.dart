@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
 
-void initDependencyLocator() {
+Future<void> initDependencyLocator() async {
   getIt
     ..registerLazySingletonAsync<AppDatabase>(
       () async =>
