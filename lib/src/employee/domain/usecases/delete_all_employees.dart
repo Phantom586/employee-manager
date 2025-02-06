@@ -3,10 +3,10 @@ import 'package:employee_manager/core/index.dart'
 import 'package:employee_manager/src/employee/index.dart'
     show EmployeeRepository;
 
-class DeleteAllEmployeeByIdUseCase extends BaseUsecase<void> {
+class DeleteAllEmployeesUseCase extends BaseUsecase<void> {
   final EmployeeRepository _repository;
 
-  DeleteAllEmployeeByIdUseCase({required EmployeeRepository repository})
+  DeleteAllEmployeesUseCase({required EmployeeRepository repository})
       : _repository = repository;
 
   @override

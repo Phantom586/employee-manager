@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:employee_manager/src/employee/domain/index.dart';
 import 'package:employee_manager/src/employee/index.dart'
     show
         FetchCurrentEmployeesUseCase,
         FetchPreviousEmployeesUseCase,
         DeleteEmployeeByIdUseCase,
+        DeleteAllEmployeesUseCase,
         Employee;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,9 +17,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FetchCurrentEmployeesUseCase _fetchCurrentEmployeesUseCase;
   final FetchPreviousEmployeesUseCase _fetchPreviousEmployeesUseCase;
   final DeleteEmployeeByIdUseCase _deleteEmployeeByIdUseCase;
+  final DeleteAllEmployeesUseCase _deleteAllEmployeesUseCase;
 
-  HomeBloc(this._fetchCurrentEmployeesUseCase,
-      this._fetchPreviousEmployeesUseCase, this._deleteEmployeeByIdUseCase)
+  HomeBloc(
+      this._fetchCurrentEmployeesUseCase,
+      this._fetchPreviousEmployeesUseCase,
+      this._deleteAllEmployeesUseCase,
+      this._deleteEmployeeByIdUseCase)
       : super(
           const HomeState(
             currentEmployees: [],
@@ -25,15 +31,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             isLoading: false,
           ),
         ) {
-    on<FetchEmployees>(_fetchEmployees);
+    on<FetchEmployees>(_fetchAllEmployees);
     on<DeleteEmployeeById>(_deleteEmployeeById);
+    on<DeleteAllEmployees>(_deleteAllEmployees);
   }
 
-  Future<void> _fetchEmployees(
-    FetchEmployees event,
-    Emitter<HomeState> emit,
-  ) async {
-    emit(state.copyWith(isLoading: true));
+  Future<(List<Employee>, List<Employee>)> _fetchEmployees() async {
     List<Employee> currentEmployees = [];
     List<Employee> previousEmployees = [];
 
@@ -46,6 +49,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     resultPreviousEmployees.fold((l) => {}, (r) {
       previousEmployees = r ?? [];
     });
+
+    return (currentEmployees, previousEmployees);
+  }
+
+  Future<void> _fetchAllEmployees(
+    FetchEmployees event,
+    Emitter<HomeState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true));
+
+    final (currentEmployees, previousEmployees) = await _fetchEmployees();
 
     emit(
       state.copyWith(
@@ -61,6 +75,40 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
-    // final currentEmployees = await
+
+    final result = await _deleteEmployeeByIdUseCase(event.employeeId);
+
+    final (currentEmployees, previousEmployees) = await _fetchEmployees();
+
+    result.fold(
+      (l) => {},
+      (r) => emit(
+        state.copyWith(
+          currentEmployees: currentEmployees,
+          previousEmployees: previousEmployees,
+          isLoading: false,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _deleteAllEmployees(
+    DeleteAllEmployees event,
+    Emitter<HomeState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true));
+
+    final result = await _deleteAllEmployeesUseCase();
+
+    result.fold(
+      (l) => {},
+      (r) => emit(
+        state.copyWith(
+          currentEmployees: [],
+          previousEmployees: [],
+          isLoading: false,
+        ),
+      ),
+    );
   }
 }
