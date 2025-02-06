@@ -1,10 +1,11 @@
-import 'package:employee_manager/core/config/index.dart';
+import 'package:employee_manager/core/resources/index.dart';
 import 'package:flutter/material.dart';
 
-import 'core/index.dart' show router;
+import 'core/index.dart' show DependencyLocator, router, getIt;
 
 void main() async {
-  initDependencyLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+  DependencyLocator.init();
   await getIt.allReady();
 
   runApp(const MyApp());

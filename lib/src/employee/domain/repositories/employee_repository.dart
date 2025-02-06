@@ -1,17 +1,18 @@
-import 'package:employee_manager/core/index.dart'
-    show EmployeeEntity, ResultFuture, ResultVoid;
+import 'package:employee_manager/core/index.dart' show ResultFuture, ResultVoid;
 import 'package:employee_manager/src/employee/domain/index.dart' show Employee;
 
 abstract class EmployeeRepository {
-  ResultVoid insertEmployee({required EmployeeEntity employee});
+  ResultVoid insertEmployee({required Employee employee});
 
-  ResultFuture<Employee> fetchEmployeeById({required String employeeId});
+  ResultVoid updateEmployee({required Employee employee});
 
-  ResultFuture<List<Employee>> fetchPreviousEmployees();
+  ResultFuture<Employee?> fetchEmployeeById({required int employeeId});
 
-  ResultFuture<List<Employee>> fetchCurrentEmployees();
+  ResultFuture<List<Employee>?> fetchPreviousEmployees();
 
-  ResultVoid deleteEmployeeById({required String employeeId});
+  ResultFuture<List<Employee>?> fetchCurrentEmployees();
+
+  ResultVoid deleteEmployeeById({required int employeeId});
 
   ResultVoid deleteAllEmployees();
 }

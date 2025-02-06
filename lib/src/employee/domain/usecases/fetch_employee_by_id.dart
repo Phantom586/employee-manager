@@ -3,12 +3,13 @@ import 'package:employee_manager/core/index.dart'
 import 'package:employee_manager/src/employee/index.dart'
     show Employee, EmployeeRepository;
 
-class InsertEmployeeUseCase extends BaseUsecaseWithParams<void, Employee> {
+class FetchEmployeeByIdUseCase extends BaseUsecaseWithParams<Employee?, int> {
   final EmployeeRepository _repository;
 
-  InsertEmployeeUseCase({required EmployeeRepository repository})
+  FetchEmployeeByIdUseCase({required EmployeeRepository repository})
       : _repository = repository;
 
   @override
-  ResultFuture call(p) async => _repository.insertEmployee(employee: p);
+  ResultFuture<Employee?> call(p) async =>
+      _repository.fetchEmployeeById(employeeId: p);
 }

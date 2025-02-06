@@ -135,8 +135,9 @@ class _$EmployeeDao extends EmployeeDao {
   final InsertionAdapter<EmployeeEntity> _employeeEntityInsertionAdapter;
 
   @override
-  Future<List<EmployeeEntity>?> getEmployees() async {
-    return _queryAdapter.queryList('SELECT * FROM employee',
+  Future<List<EmployeeEntity>?> getCurrentEmployees() async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM employee WHERE      startDate is NOT NULL AND endDate is NULL',
         mapper: (Map<String, Object?> row) => EmployeeEntity(
             id: row['id'] as int?,
             name: row['name'] as String?,
@@ -147,7 +148,20 @@ class _$EmployeeDao extends EmployeeDao {
   }
 
   @override
-  Future<EmployeeEntity?> findEmployeeById(String employeeId) async {
+  Future<List<EmployeeEntity>?> getPreviousEmployees() async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM employee WHERE      startDate is NOT NULL AND endDate is NOT NULL',
+        mapper: (Map<String, Object?> row) => EmployeeEntity(
+            id: row['id'] as int?,
+            name: row['name'] as String?,
+            role: row['role'] as String?,
+            startDate:
+                _dateTimeTypeConverter.decode(row['startDate'] as String),
+            endDate: _dateTimeTypeConverter.decode(row['endDate'] as String)));
+  }
+
+  @override
+  Future<EmployeeEntity?> findEmployeeById(int employeeId) async {
     return _queryAdapter.query('SELECT * FROM employee WHERE id = ?1',
         mapper: (Map<String, Object?> row) => EmployeeEntity(
             id: row['id'] as int?,
@@ -160,7 +174,7 @@ class _$EmployeeDao extends EmployeeDao {
   }
 
   @override
-  Future<void> deleteEmployeeById(String employeeId) async {
+  Future<void> deleteEmployeeById(int employeeId) async {
     await _queryAdapter.queryNoReturn('DELETE FROM employee WHERE id = ?1',
         arguments: [employeeId]);
   }
