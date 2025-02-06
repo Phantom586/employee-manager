@@ -161,7 +161,7 @@ class _$EmployeeDao extends EmployeeDao {
   }
 
   @override
-  Future<EmployeeEntity?> findEmployeeById(String employeeId) async {
+  Future<EmployeeEntity?> findEmployeeById(int employeeId) async {
     return _queryAdapter.query('SELECT * FROM employee WHERE id = ?1',
         mapper: (Map<String, Object?> row) => EmployeeEntity(
             id: row['id'] as int?,
@@ -174,7 +174,7 @@ class _$EmployeeDao extends EmployeeDao {
   }
 
   @override
-  Future<void> deleteEmployeeById(String employeeId) async {
+  Future<void> deleteEmployeeById(int employeeId) async {
     await _queryAdapter.queryNoReturn('DELETE FROM employee WHERE id = ?1',
         arguments: [employeeId]);
   }

@@ -18,7 +18,7 @@ class EmployeeRepositoryImpl implements EmployeeRepository {
       : _localDatasource = localDatasource;
 
   @override
-  ResultVoid insertEmployee({required EmployeeEntity employee}) async {
+  ResultVoid insertEmployee({required Employee employee}) async {
     try {
       await _localDatasource.insertEmployee(employee: employee);
       return const Right(null);
@@ -28,7 +28,7 @@ class EmployeeRepositoryImpl implements EmployeeRepository {
   }
 
   @override
-  ResultVoid updateEmployee({required EmployeeEntity employee}) async {
+  ResultVoid updateEmployee({required Employee employee}) async {
     try {
       await _localDatasource.updateEmployee(employee: employee);
       return const Right(null);
@@ -38,8 +38,7 @@ class EmployeeRepositoryImpl implements EmployeeRepository {
   }
 
   @override
-  ResultFuture<Employee?> fetchEmployeeById(
-      {required String employeeId}) async {
+  ResultFuture<Employee?> fetchEmployeeById({required int employeeId}) async {
     try {
       final employee =
           await _localDatasource.fetchEmployeeById(employeeId: employeeId);
@@ -70,7 +69,7 @@ class EmployeeRepositoryImpl implements EmployeeRepository {
   }
 
   @override
-  ResultVoid deleteEmployeeById({required String employeeId}) async {
+  ResultVoid deleteEmployeeById({required int employeeId}) async {
     try {
       await _localDatasource.deleteEmployeeById(employeeId: employeeId);
       return const Right(null);

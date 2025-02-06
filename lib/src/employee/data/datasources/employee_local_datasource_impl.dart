@@ -17,9 +17,10 @@ class EmployeeLocalDatasourceImpl implements EmployeeLocalDatasource {
       : _employeeDao = employeeDao;
 
   @override
-  ResultVoid insertEmployee({required EmployeeEntity employee}) async {
+  ResultVoid insertEmployee({required Employee employee}) async {
     try {
-      await _employeeDao.insert(employee);
+      final employeeEntity = EmployeeEntity.fromEmployee(employee: employee);
+      await _employeeDao.insert(employeeEntity);
       return Right(null);
     } catch (e) {
       throw APIException(message: e.toString(), statusCode: 505);
@@ -27,9 +28,10 @@ class EmployeeLocalDatasourceImpl implements EmployeeLocalDatasource {
   }
 
   @override
-  ResultVoid updateEmployee({required EmployeeEntity employee}) async {
+  ResultVoid updateEmployee({required Employee employee}) async {
     try {
-      await _employeeDao.insert(employee);
+      final employeeEntity = EmployeeEntity.fromEmployee(employee: employee);
+      await _employeeDao.insert(employeeEntity);
       return Right(null);
     } catch (e) {
       throw APIException(message: e.toString(), statusCode: 505);
@@ -37,8 +39,7 @@ class EmployeeLocalDatasourceImpl implements EmployeeLocalDatasource {
   }
 
   @override
-  ResultFuture<Employee?> fetchEmployeeById(
-      {required String employeeId}) async {
+  ResultFuture<Employee?> fetchEmployeeById({required int employeeId}) async {
     try {
       final employeeEntity = await _employeeDao.findEmployeeById(employeeId);
       final employee = employeeEntity?.toEmployee;
@@ -71,7 +72,7 @@ class EmployeeLocalDatasourceImpl implements EmployeeLocalDatasource {
   }
 
   @override
-  ResultVoid deleteEmployeeById({required String employeeId}) async {
+  ResultVoid deleteEmployeeById({required int employeeId}) async {
     try {
       await _employeeDao.deleteEmployeeById(employeeId);
       return Right(null);

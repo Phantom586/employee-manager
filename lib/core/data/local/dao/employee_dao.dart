@@ -24,10 +24,10 @@ abstract class EmployeeDao {
   Future<void> insert(EmployeeEntity employee);
 
   @Query('SELECT * FROM ${SQLiteTableNames.employee} WHERE id = :employeeId')
-  Future<EmployeeEntity?> findEmployeeById(String employeeId);
+  Future<EmployeeEntity?> findEmployeeById(int employeeId);
 
   @Query('DELETE FROM ${SQLiteTableNames.employee} WHERE id = :employeeId')
-  Future<void> deleteEmployeeById(String employeeId);
+  Future<void> deleteEmployeeById(int employeeId);
 
   @Query('DELETE FROM ${SQLiteTableNames.employee}')
   Future<void> deleteAllEmployees();
