@@ -2,7 +2,6 @@ part of 'home_bloc.dart';
 
 @freezed
 class HomeEvent with _$HomeEvent {
-  const factory HomeEvent.fetchCurrentEmployees() = _FetchCurrentEmployees;
-  const factory HomeEvent.fetchPreviousEmployees() = _FetchPreviousEmployees;
-  const factory HomeEvent.deleteEmployeeById() = _DeleteEmployeeById;
+  const factory HomeEvent.fetchEmployees() = FetchEmployees;
+  const factory HomeEvent.deleteEmployeeById() = DeleteEmployeeById;
 }

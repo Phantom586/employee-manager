@@ -35,17 +35,17 @@ mixin _$EmployeeAddEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddEmployee value) addEmployee,
+    required TResult Function(AddEmployee value) addEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddEmployee value)? addEmployee,
+    TResult? Function(AddEmployee value)? addEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddEmployee value)? addEmployee,
+    TResult Function(AddEmployee value)? addEmployee,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -144,7 +144,7 @@ class __$$AddEmployeeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AddEmployeeImpl implements _AddEmployee {
+class _$AddEmployeeImpl implements AddEmployee {
   const _$AddEmployeeImpl({required this.employee});
 
   @override
@@ -206,7 +206,7 @@ class _$AddEmployeeImpl implements _AddEmployee {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddEmployee value) addEmployee,
+    required TResult Function(AddEmployee value) addEmployee,
   }) {
     return addEmployee(this);
   }
@@ -214,7 +214,7 @@ class _$AddEmployeeImpl implements _AddEmployee {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddEmployee value)? addEmployee,
+    TResult? Function(AddEmployee value)? addEmployee,
   }) {
     return addEmployee?.call(this);
   }
@@ -222,7 +222,7 @@ class _$AddEmployeeImpl implements _AddEmployee {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddEmployee value)? addEmployee,
+    TResult Function(AddEmployee value)? addEmployee,
     required TResult orElse(),
   }) {
     if (addEmployee != null) {
@@ -232,8 +232,8 @@ class _$AddEmployeeImpl implements _AddEmployee {
   }
 }
 
-abstract class _AddEmployee implements EmployeeAddEvent {
-  const factory _AddEmployee({required final Employee employee}) =
+abstract class AddEmployee implements EmployeeAddEvent {
+  const factory AddEmployee({required final Employee employee}) =
       _$AddEmployeeImpl;
 
   @override
@@ -249,37 +249,12 @@ abstract class _AddEmployee implements EmployeeAddEvent {
 
 /// @nodoc
 mixin _$EmployeeAddState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  bool get isLoading => throw _privateConstructorUsedError;
+
+  /// Create a copy of EmployeeAddState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $EmployeeAddStateCopyWith<EmployeeAddState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -288,6 +263,8 @@ abstract class $EmployeeAddStateCopyWith<$Res> {
   factory $EmployeeAddStateCopyWith(
           EmployeeAddState value, $Res Function(EmployeeAddState) then) =
       _$EmployeeAddStateCopyWithImpl<$Res, EmployeeAddState>;
+  @useResult
+  $Res call({bool isLoading});
 }
 
 /// @nodoc
@@ -302,103 +279,101 @@ class _$EmployeeAddStateCopyWithImpl<$Res, $Val extends EmployeeAddState>
 
   /// Create a copy of EmployeeAddState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$EmployeeAddStateImplCopyWith<$Res>
+    implements $EmployeeAddStateCopyWith<$Res> {
+  factory _$$EmployeeAddStateImplCopyWith(_$EmployeeAddStateImpl value,
+          $Res Function(_$EmployeeAddStateImpl) then) =
+      __$$EmployeeAddStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isLoading});
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$EmployeeAddStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$EmployeeAddStateImplCopyWithImpl<$Res>
+    extends _$EmployeeAddStateCopyWithImpl<$Res, _$EmployeeAddStateImpl>
+    implements _$$EmployeeAddStateImplCopyWith<$Res> {
+  __$$EmployeeAddStateImplCopyWithImpl(_$EmployeeAddStateImpl _value,
+      $Res Function(_$EmployeeAddStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of EmployeeAddState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+  }) {
+    return _then(_$EmployeeAddStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$EmployeeAddStateImpl implements _EmployeeAddState {
+  const _$EmployeeAddStateImpl({required this.isLoading});
+
+  @override
+  final bool isLoading;
 
   @override
   String toString() {
-    return 'EmployeeAddState.initial()';
+    return 'EmployeeAddState(isLoading: $isLoading)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$EmployeeAddStateImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isLoading);
 
+  /// Create a copy of EmployeeAddState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  @pragma('vm:prefer-inline')
+  _$$EmployeeAddStateImplCopyWith<_$EmployeeAddStateImpl> get copyWith =>
+      __$$EmployeeAddStateImplCopyWithImpl<_$EmployeeAddStateImpl>(
+          this, _$identity);
 }
 
-abstract class _Initial implements EmployeeAddState {
-  const factory _Initial() = _$InitialImpl;
+abstract class _EmployeeAddState implements EmployeeAddState {
+  const factory _EmployeeAddState({required final bool isLoading}) =
+      _$EmployeeAddStateImpl;
+
+  @override
+  bool get isLoading;
+
+  /// Create a copy of EmployeeAddState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EmployeeAddStateImplCopyWith<_$EmployeeAddStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
