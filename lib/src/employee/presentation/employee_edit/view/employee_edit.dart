@@ -32,10 +32,20 @@ class EmployeeEdit extends StatelessWidget {
         actions: [
           GestureDetector(
             onTap: () {
-              context
-                  .read<EmployeeEditBloc>()
-                  .add(DeleteEmployeeByIdE(employeeId: employeeId));
-              context.pop();
+              showDialog<bool>(
+                context: context,
+                builder: (_) => ConfirmationDialog(
+                  onDelete: () {
+                    context
+                        .read<EmployeeEditBloc>()
+                        .add(DeleteEmployeeByIdE(employeeId: employeeId));
+                    context
+                      ..pop()
+                      ..pop();
+                  },
+                  onCancel: () => context.pop(false),
+                ),
+              );
             },
             child: Padding(
               padding: const EdgeInsets.only(

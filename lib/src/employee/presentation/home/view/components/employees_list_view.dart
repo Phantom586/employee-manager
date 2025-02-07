@@ -1,4 +1,7 @@
-import 'package:employee_manager/core/index.dart' show AppColors, EmpAssets;
+import 'dart:developer';
+
+import 'package:employee_manager/core/index.dart'
+    show AppColors, ConfirmationDialog, EmpAssets;
 import 'package:employee_manager/src/employee/index.dart'
     show Employee, EmployeeEdit, FetchEmployees, HomeBloc, ListItem;
 import 'package:flutter/material.dart';
@@ -41,7 +44,14 @@ class EmployeesListView extends StatelessWidget {
           },
           confirmDismiss: (direction) async {
             if (direction == DismissDirection.endToStart) {
-              return true;
+              final result = await showDialog<bool>(
+                context: context,
+                builder: (_) => ConfirmationDialog(
+                  onDelete: () => context.pop(true),
+                  onCancel: () => context.pop(false),
+                ),
+              );
+              return result;
             }
             return false;
           },
