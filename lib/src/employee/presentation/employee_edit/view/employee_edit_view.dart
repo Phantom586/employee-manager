@@ -1,20 +1,22 @@
 import 'package:employee_manager/core/index.dart'
     show showCommonDatePicker, AppColors, EmpAssets, datePickerTimeFormatter;
 import 'package:employee_manager/src/employee/index.dart'
-    show Employee, EmployeeAddBloc, RoleBottomSheet, AddEmployee;
+    show EditEmployeeById, Employee, EmployeeEditBloc, RoleBottomSheet;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class EmployeeAddView extends StatefulWidget {
-  const EmployeeAddView({super.key});
+class EmployeeEditView extends StatefulWidget {
+  const EmployeeEditView({super.key, required this.employee});
+
+  final Employee employee;
 
   @override
-  State<EmployeeAddView> createState() => _EmployeeAddViewState();
+  State<EmployeeEditView> createState() => _EmployeeEditViewState();
 }
 
-class _EmployeeAddViewState extends State<EmployeeAddView> {
+class _EmployeeEditViewState extends State<EmployeeEditView> {
   late TextEditingController _employeeNameTextController;
   late TextEditingController _employeeRoleTextController;
   late TextEditingController _startDateTextController;
@@ -27,10 +29,18 @@ class _EmployeeAddViewState extends State<EmployeeAddView> {
   void initState() {
     super.initState();
 
-    _employeeNameTextController = TextEditingController();
-    _employeeRoleTextController = TextEditingController();
-    _startDateTextController = TextEditingController();
-    _endDateTextController = TextEditingController();
+    _employeeNameTextController =
+        TextEditingController(text: widget.employee.name);
+    _employeeRoleTextController =
+        TextEditingController(text: widget.employee.role);
+    final startDate = widget.employee.startDate;
+    _startDateTextController = TextEditingController(
+        text: datePickerTimeFormatter.format(widget.employee.startDate!));
+    final endDate = widget.employee.endDate;
+    _endDateTextController = TextEditingController(
+        text: endDate != null ? datePickerTimeFormatter.format(endDate) : null);
+    _startDate = startDate;
+    _endDate = endDate;
   }
 
   @override
@@ -274,9 +284,10 @@ class _EmployeeAddViewState extends State<EmployeeAddView> {
                   ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        context.read<EmployeeAddBloc>().add(
-                              AddEmployee(
+                        context.read<EmployeeEditBloc>().add(
+                              EditEmployeeById(
                                 employee: Employee(
+                                  id: widget.employee.id,
                                   name: _employeeNameTextController.text,
                                   role: _employeeRoleTextController.text,
                                   startDate: _startDate,
@@ -284,6 +295,13 @@ class _EmployeeAddViewState extends State<EmployeeAddView> {
                                 ),
                               ),
                             );
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                '${widget.employee.name} has been successfully edited!'),
+                          ),
+                        );
                         _resetFields();
                       }
                     },

@@ -49,6 +49,7 @@ class HomeLoadedView extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: [
           EmployeeHeader(label: 'Current Employees'),
           SizedBox(
@@ -74,8 +75,9 @@ class HomeLoadedView extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              bottom: 44,
+              bottom: 60,
               left: 16,
+              top: 16,
             ),
             child: Text(
               'Swipe left to delete',

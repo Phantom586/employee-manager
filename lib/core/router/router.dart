@@ -1,6 +1,13 @@
 import 'package:employee_manager/core/index.dart' show getIt;
 import 'package:employee_manager/src/employee/index.dart'
-    show EmployeeAddView, EmployeeEditView, FetchEmployees, HomeBloc, HomeView;
+    show
+        EmployeeAdd,
+        EmployeeEdit,
+        EmployeeEditBloc,
+        FetchEmployeeById,
+        FetchEmployees,
+        HomeBloc,
+        HomeView;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,13 +21,23 @@ final router = GoRouter(initialLocation: '/', routes: [
     ),
   ),
   GoRoute(
-    name: EmployeeAddView.routeName,
+    name: EmployeeAdd.routeName,
     path: '/employee/add',
-    builder: (context, state) => const EmployeeAddView(),
+    builder: (context, state) => const EmployeeAdd(),
   ),
   GoRoute(
-    name: EmployeeEditView.routeName,
+    name: EmployeeEdit.routeName,
     path: '/employee/edit',
-    builder: (context, state) => const EmployeeEditView(),
+    builder: (context, state) {
+      final arguments = state.extra as Map<String, int?>;
+      final employeeId = arguments['employeeId'];
+      return BlocProvider<EmployeeEditBloc>(
+        create: (context) => getIt<EmployeeEditBloc>()
+          ..add(FetchEmployeeById(employeeId: employeeId)),
+        child: EmployeeEdit(
+          employeeId: employeeId!,
+        ),
+      );
+    },
   ),
 ]);

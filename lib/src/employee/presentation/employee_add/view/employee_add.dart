@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'employee_add_view.dart';
 
-class EmployeeAddView extends StatelessWidget {
-  const EmployeeAddView({super.key});
+class EmployeeAdd extends StatelessWidget {
+  const EmployeeAdd({super.key});
 
   static const String routeName = '/employee/add';
 
@@ -32,10 +32,7 @@ class EmployeeAddView extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else {
-              return BlocProvider<EmployeeAddBloc>.value(
-                value: BlocProvider.of<EmployeeAddBloc>(context),
-                child: EmployeeView(),
-              );
+              return EmployeeAddView();
             }
           },
         ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:employee_manager/src/employee/index.dart'
     show
@@ -39,13 +41,22 @@ class EmployeeEditBloc extends Bloc<EmployeeEditEvent, EmployeeEditState> {
     final result = await _fetchEmployeeByIdUseCase(event.employeeId);
 
     result.fold(
-        (l) => {},
-        (r) => emit(
-              state.copyWith(
-                employee: r,
-                isLoading: false,
-              ),
-            ));
+      (l) => emit(
+        state.copyWith(
+          employee: null,
+          isLoading: false,
+        ),
+      ),
+      (r) {
+        log('Fetched Employee: ${r.toString()}');
+        emit(
+          state.copyWith(
+            employee: r,
+            isLoading: false,
+          ),
+        );
+      },
+    );
   }
 
   Future<void> _editEmployeeById(
@@ -54,16 +65,27 @@ class EmployeeEditBloc extends Bloc<EmployeeEditEvent, EmployeeEditState> {
   ) async {
     emit(state.copyWith(isLoading: true));
 
-    final result = await _updateEmployeeByIdUseCase(event.employee);
+    log('Updating Details: ${event.employee..toString()}');
+    await _updateEmployeeByIdUseCase(event.employee);
 
+    final result = await _fetchEmployeeByIdUseCase(event.employee.id!);
     result.fold(
-        (l) => {},
-        (r) => emit(
-              state.copyWith(
-                employee: r,
-                isLoading: false,
-              ),
-            ));
+      (l) => emit(
+        state.copyWith(
+          employee: null,
+          isLoading: false,
+        ),
+      ),
+      (r) {
+        log('Fetched Employee: ${r.toString()}');
+        emit(
+          state.copyWith(
+            employee: r,
+            isLoading: false,
+          ),
+        );
+      },
+    );
   }
 
   Future<void> _deleteEmployeeById(

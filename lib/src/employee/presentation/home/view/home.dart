@@ -1,6 +1,7 @@
-import 'package:employee_manager/core/index.dart' show EmpAssets, AppColors;
+import 'package:employee_manager/core/index.dart'
+    show AppColors, EmpAssets, getIt;
 import 'package:employee_manager/src/employee/index.dart'
-    show EmployeeAddView, FetchEmployees, HomeBloc, HomeState;
+    show EmployeeAdd, FetchEmployees, HomeBloc, HomeState;
 import 'package:employee_manager/src/employee/presentation/home/view/home_loaded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: AppColors.primaryColorDark,
         elevation: 0,
         onPressed: () {
-          context.pushNamed(EmployeeAddView.routeName).then(
+          context.pushNamed(EmployeeAdd.routeName).then(
                 (value) => context.read<HomeBloc>().add(FetchEmployees()),
               );
         },

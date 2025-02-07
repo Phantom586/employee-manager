@@ -1,12 +1,6 @@
 import 'package:employee_manager/core/index.dart' show AppColors, EmpAssets;
 import 'package:employee_manager/src/employee/index.dart'
-    show
-        DeleteEmployeeById,
-        Employee,
-        EmployeeEditView,
-        HomeBloc,
-        ListItem,
-        UndoDeleteEmployee;
+    show Employee, EmployeeEdit, FetchEmployees, HomeBloc, ListItem;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -55,7 +49,11 @@ class EmployeesListView extends StatelessWidget {
             onDismissed(currentEmployee);
           },
           child: GestureDetector(
-            onTap: () => context.pushNamed(EmployeeEditView.routeName),
+            onTap: () => context.pushNamed(EmployeeEdit.routeName, extra: {
+              "employeeId": currentEmployee.id,
+            }).then(
+              (value) => context.read<HomeBloc>().add(FetchEmployees()),
+            ),
             child: ListItem(employee: currentEmployee),
           ),
         );
