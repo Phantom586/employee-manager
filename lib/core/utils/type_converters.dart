@@ -10,4 +10,5 @@ class DateTimeTypeConverter extends TypeConverter<DateTime?, String> {
   String encode(DateTime? value) => value?.toIso8601String() ?? '';
 }
 
-final dateTimeFormatter = DateFormat('d MMM yyyy');
+final dateTimeFormatter = DateFormat('d MMM, yyyy');
+final datePickerTimeFormatter = DateFormat('d MMM yyyy');

@@ -21,6 +21,7 @@ mixin _$HomeEvent {
     required TResult Function() fetchEmployees,
     required TResult Function(int employeeId) deleteEmployeeById,
     required TResult Function() deleteAllEmployees,
+    required TResult Function(Employee employee) undoDeleteEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$HomeEvent {
     TResult? Function()? fetchEmployees,
     TResult? Function(int employeeId)? deleteEmployeeById,
     TResult? Function()? deleteAllEmployees,
+    TResult? Function(Employee employee)? undoDeleteEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$HomeEvent {
     TResult Function()? fetchEmployees,
     TResult Function(int employeeId)? deleteEmployeeById,
     TResult Function()? deleteAllEmployees,
+    TResult Function(Employee employee)? undoDeleteEmployee,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$HomeEvent {
     required TResult Function(FetchEmployees value) fetchEmployees,
     required TResult Function(DeleteEmployeeById value) deleteEmployeeById,
     required TResult Function(DeleteAllEmployees value) deleteAllEmployees,
+    required TResult Function(UndoDeleteEmployee value) undoDeleteEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$HomeEvent {
     TResult? Function(FetchEmployees value)? fetchEmployees,
     TResult? Function(DeleteEmployeeById value)? deleteEmployeeById,
     TResult? Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult? Function(UndoDeleteEmployee value)? undoDeleteEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$HomeEvent {
     TResult Function(FetchEmployees value)? fetchEmployees,
     TResult Function(DeleteEmployeeById value)? deleteEmployeeById,
     TResult Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult Function(UndoDeleteEmployee value)? undoDeleteEmployee,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,6 +132,7 @@ class _$FetchEmployeesImpl implements FetchEmployees {
     required TResult Function() fetchEmployees,
     required TResult Function(int employeeId) deleteEmployeeById,
     required TResult Function() deleteAllEmployees,
+    required TResult Function(Employee employee) undoDeleteEmployee,
   }) {
     return fetchEmployees();
   }
@@ -136,6 +143,7 @@ class _$FetchEmployeesImpl implements FetchEmployees {
     TResult? Function()? fetchEmployees,
     TResult? Function(int employeeId)? deleteEmployeeById,
     TResult? Function()? deleteAllEmployees,
+    TResult? Function(Employee employee)? undoDeleteEmployee,
   }) {
     return fetchEmployees?.call();
   }
@@ -146,6 +154,7 @@ class _$FetchEmployeesImpl implements FetchEmployees {
     TResult Function()? fetchEmployees,
     TResult Function(int employeeId)? deleteEmployeeById,
     TResult Function()? deleteAllEmployees,
+    TResult Function(Employee employee)? undoDeleteEmployee,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -160,6 +169,7 @@ class _$FetchEmployeesImpl implements FetchEmployees {
     required TResult Function(FetchEmployees value) fetchEmployees,
     required TResult Function(DeleteEmployeeById value) deleteEmployeeById,
     required TResult Function(DeleteAllEmployees value) deleteAllEmployees,
+    required TResult Function(UndoDeleteEmployee value) undoDeleteEmployee,
   }) {
     return fetchEmployees(this);
   }
@@ -170,6 +180,7 @@ class _$FetchEmployeesImpl implements FetchEmployees {
     TResult? Function(FetchEmployees value)? fetchEmployees,
     TResult? Function(DeleteEmployeeById value)? deleteEmployeeById,
     TResult? Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult? Function(UndoDeleteEmployee value)? undoDeleteEmployee,
   }) {
     return fetchEmployees?.call(this);
   }
@@ -180,6 +191,7 @@ class _$FetchEmployeesImpl implements FetchEmployees {
     TResult Function(FetchEmployees value)? fetchEmployees,
     TResult Function(DeleteEmployeeById value)? deleteEmployeeById,
     TResult Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult Function(UndoDeleteEmployee value)? undoDeleteEmployee,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -266,6 +278,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
     required TResult Function() fetchEmployees,
     required TResult Function(int employeeId) deleteEmployeeById,
     required TResult Function() deleteAllEmployees,
+    required TResult Function(Employee employee) undoDeleteEmployee,
   }) {
     return deleteEmployeeById(employeeId);
   }
@@ -276,6 +289,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
     TResult? Function()? fetchEmployees,
     TResult? Function(int employeeId)? deleteEmployeeById,
     TResult? Function()? deleteAllEmployees,
+    TResult? Function(Employee employee)? undoDeleteEmployee,
   }) {
     return deleteEmployeeById?.call(employeeId);
   }
@@ -286,6 +300,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
     TResult Function()? fetchEmployees,
     TResult Function(int employeeId)? deleteEmployeeById,
     TResult Function()? deleteAllEmployees,
+    TResult Function(Employee employee)? undoDeleteEmployee,
     required TResult orElse(),
   }) {
     if (deleteEmployeeById != null) {
@@ -300,6 +315,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
     required TResult Function(FetchEmployees value) fetchEmployees,
     required TResult Function(DeleteEmployeeById value) deleteEmployeeById,
     required TResult Function(DeleteAllEmployees value) deleteAllEmployees,
+    required TResult Function(UndoDeleteEmployee value) undoDeleteEmployee,
   }) {
     return deleteEmployeeById(this);
   }
@@ -310,6 +326,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
     TResult? Function(FetchEmployees value)? fetchEmployees,
     TResult? Function(DeleteEmployeeById value)? deleteEmployeeById,
     TResult? Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult? Function(UndoDeleteEmployee value)? undoDeleteEmployee,
   }) {
     return deleteEmployeeById?.call(this);
   }
@@ -320,6 +337,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
     TResult Function(FetchEmployees value)? fetchEmployees,
     TResult Function(DeleteEmployeeById value)? deleteEmployeeById,
     TResult Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult Function(UndoDeleteEmployee value)? undoDeleteEmployee,
     required TResult orElse(),
   }) {
     if (deleteEmployeeById != null) {
@@ -386,6 +404,7 @@ class _$DeleteAllEmployeesImpl implements DeleteAllEmployees {
     required TResult Function() fetchEmployees,
     required TResult Function(int employeeId) deleteEmployeeById,
     required TResult Function() deleteAllEmployees,
+    required TResult Function(Employee employee) undoDeleteEmployee,
   }) {
     return deleteAllEmployees();
   }
@@ -396,6 +415,7 @@ class _$DeleteAllEmployeesImpl implements DeleteAllEmployees {
     TResult? Function()? fetchEmployees,
     TResult? Function(int employeeId)? deleteEmployeeById,
     TResult? Function()? deleteAllEmployees,
+    TResult? Function(Employee employee)? undoDeleteEmployee,
   }) {
     return deleteAllEmployees?.call();
   }
@@ -406,6 +426,7 @@ class _$DeleteAllEmployeesImpl implements DeleteAllEmployees {
     TResult Function()? fetchEmployees,
     TResult Function(int employeeId)? deleteEmployeeById,
     TResult Function()? deleteAllEmployees,
+    TResult Function(Employee employee)? undoDeleteEmployee,
     required TResult orElse(),
   }) {
     if (deleteAllEmployees != null) {
@@ -420,6 +441,7 @@ class _$DeleteAllEmployeesImpl implements DeleteAllEmployees {
     required TResult Function(FetchEmployees value) fetchEmployees,
     required TResult Function(DeleteEmployeeById value) deleteEmployeeById,
     required TResult Function(DeleteAllEmployees value) deleteAllEmployees,
+    required TResult Function(UndoDeleteEmployee value) undoDeleteEmployee,
   }) {
     return deleteAllEmployees(this);
   }
@@ -430,6 +452,7 @@ class _$DeleteAllEmployeesImpl implements DeleteAllEmployees {
     TResult? Function(FetchEmployees value)? fetchEmployees,
     TResult? Function(DeleteEmployeeById value)? deleteEmployeeById,
     TResult? Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult? Function(UndoDeleteEmployee value)? undoDeleteEmployee,
   }) {
     return deleteAllEmployees?.call(this);
   }
@@ -440,6 +463,7 @@ class _$DeleteAllEmployeesImpl implements DeleteAllEmployees {
     TResult Function(FetchEmployees value)? fetchEmployees,
     TResult Function(DeleteEmployeeById value)? deleteEmployeeById,
     TResult Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult Function(UndoDeleteEmployee value)? undoDeleteEmployee,
     required TResult orElse(),
   }) {
     if (deleteAllEmployees != null) {
@@ -451,6 +475,173 @@ class _$DeleteAllEmployeesImpl implements DeleteAllEmployees {
 
 abstract class DeleteAllEmployees implements HomeEvent {
   const factory DeleteAllEmployees() = _$DeleteAllEmployeesImpl;
+}
+
+/// @nodoc
+abstract class _$$UndoDeleteEmployeeImplCopyWith<$Res> {
+  factory _$$UndoDeleteEmployeeImplCopyWith(_$UndoDeleteEmployeeImpl value,
+          $Res Function(_$UndoDeleteEmployeeImpl) then) =
+      __$$UndoDeleteEmployeeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Employee employee});
+
+  $EmployeeCopyWith<$Res> get employee;
+}
+
+/// @nodoc
+class __$$UndoDeleteEmployeeImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$UndoDeleteEmployeeImpl>
+    implements _$$UndoDeleteEmployeeImplCopyWith<$Res> {
+  __$$UndoDeleteEmployeeImplCopyWithImpl(_$UndoDeleteEmployeeImpl _value,
+      $Res Function(_$UndoDeleteEmployeeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employee = null,
+  }) {
+    return _then(_$UndoDeleteEmployeeImpl(
+      employee: null == employee
+          ? _value.employee
+          : employee // ignore: cast_nullable_to_non_nullable
+              as Employee,
+    ));
+  }
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EmployeeCopyWith<$Res> get employee {
+    return $EmployeeCopyWith<$Res>(_value.employee, (value) {
+      return _then(_value.copyWith(employee: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$UndoDeleteEmployeeImpl implements UndoDeleteEmployee {
+  const _$UndoDeleteEmployeeImpl({required this.employee});
+
+  @override
+  final Employee employee;
+
+  @override
+  String toString() {
+    return 'HomeEvent.undoDeleteEmployee(employee: $employee)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UndoDeleteEmployeeImpl &&
+            (identical(other.employee, employee) ||
+                other.employee == employee));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, employee);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UndoDeleteEmployeeImplCopyWith<_$UndoDeleteEmployeeImpl> get copyWith =>
+      __$$UndoDeleteEmployeeImplCopyWithImpl<_$UndoDeleteEmployeeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchEmployees,
+    required TResult Function(int employeeId) deleteEmployeeById,
+    required TResult Function() deleteAllEmployees,
+    required TResult Function(Employee employee) undoDeleteEmployee,
+  }) {
+    return undoDeleteEmployee(employee);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int employeeId)? deleteEmployeeById,
+    TResult? Function()? deleteAllEmployees,
+    TResult? Function(Employee employee)? undoDeleteEmployee,
+  }) {
+    return undoDeleteEmployee?.call(employee);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchEmployees,
+    TResult Function(int employeeId)? deleteEmployeeById,
+    TResult Function()? deleteAllEmployees,
+    TResult Function(Employee employee)? undoDeleteEmployee,
+    required TResult orElse(),
+  }) {
+    if (undoDeleteEmployee != null) {
+      return undoDeleteEmployee(employee);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchEmployees value) fetchEmployees,
+    required TResult Function(DeleteEmployeeById value) deleteEmployeeById,
+    required TResult Function(DeleteAllEmployees value) deleteAllEmployees,
+    required TResult Function(UndoDeleteEmployee value) undoDeleteEmployee,
+  }) {
+    return undoDeleteEmployee(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchEmployees value)? fetchEmployees,
+    TResult? Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult? Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult? Function(UndoDeleteEmployee value)? undoDeleteEmployee,
+  }) {
+    return undoDeleteEmployee?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchEmployees value)? fetchEmployees,
+    TResult Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult Function(DeleteAllEmployees value)? deleteAllEmployees,
+    TResult Function(UndoDeleteEmployee value)? undoDeleteEmployee,
+    required TResult orElse(),
+  }) {
+    if (undoDeleteEmployee != null) {
+      return undoDeleteEmployee(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UndoDeleteEmployee implements HomeEvent {
+  const factory UndoDeleteEmployee({required final Employee employee}) =
+      _$UndoDeleteEmployeeImpl;
+
+  Employee get employee;
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UndoDeleteEmployeeImplCopyWith<_$UndoDeleteEmployeeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -50,7 +50,8 @@ void initDepedencyLocator() {
     ..registerLazySingleton(
         () => DeleteAllEmployeesUseCase(repository: getIt()))
     // Bloc
-    ..registerFactory(() => HomeBloc(getIt(), getIt(), getIt(), getIt()))
+    ..registerFactory(
+        () => HomeBloc(getIt(), getIt(), getIt(), getIt(), getIt()))
     ..registerFactory(() => EmployeeEditBloc(getIt(), getIt(), getIt()))
     ..registerFactory(() => EmployeeAddBloc(getIt()));
 }

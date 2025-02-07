@@ -1,6 +1,6 @@
 import 'package:employee_manager/core/index.dart';
-import 'package:employee_manager/src/employee/index.dart';
-import 'package:employee_manager/src/employee/presentation/employee_add/view/components/role_bottom_sheet.dart';
+import 'package:employee_manager/src/employee/index.dart'
+    show Employee, EmployeeAddBloc, RoleBottomSheet, AddEmployee;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,27 +14,30 @@ class EmployeeView extends StatefulWidget {
 }
 
 class _EmployeeViewState extends State<EmployeeView> {
-  late TextEditingController _employeeName;
-  late TextEditingController _employeeRole;
-  late TextEditingController _startDate;
-  late TextEditingController _endDate;
+  late TextEditingController _employeeNameTextController;
+  late TextEditingController _employeeRoleTextController;
+  late TextEditingController _startDateTextController;
+  late TextEditingController _endDateTextController;
+  DateTime? _startDate, _endDate;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
 
-    _employeeName = TextEditingController();
-    _employeeRole = TextEditingController();
-    _startDate = TextEditingController();
-    _endDate = TextEditingController();
+    _employeeNameTextController = TextEditingController();
+    _employeeRoleTextController = TextEditingController();
+    _startDateTextController = TextEditingController();
+    _endDateTextController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _employeeName.dispose();
-    _employeeRole.dispose();
-    _startDate.dispose();
-    _endDate.dispose();
+    _employeeNameTextController.dispose();
+    _employeeRoleTextController.dispose();
+    _startDateTextController.dispose();
+    _endDateTextController.dispose();
     super.dispose();
   }
 
@@ -47,6 +50,15 @@ class _EmployeeViewState extends State<EmployeeView> {
     );
   }
 
+  void _resetFields() {
+    _employeeNameTextController.text = '';
+    _employeeRoleTextController.text = '';
+    _startDateTextController.text = '';
+    _endDateTextController.text = '';
+    _startDate = null;
+    _endDate = null;
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -56,159 +68,189 @@ class _EmployeeViewState extends State<EmployeeView> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            TextFormField(
-              controller: _employeeName,
-              style: textTheme.bodyLarge?.copyWith(
-                color: AppColors.focusedTextColor,
-              ),
-              decoration: InputDecoration(
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(
-                      EmpAssets.personIcon,
-                    ),
-                  ),
-                  hintText: 'Employee name',
-                  hintStyle: textTheme.bodyLarge?.copyWith(
-                    color: AppColors.muteText,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide(
-                        color: AppColors.border,
-                      ))),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            TextFormField(
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) => SizedBox(
-                    height: 300,
-                    width: double.maxFinite,
-                    child: RoleBottomSheet(
-                      onTap: (roleName) {
-                        context.pop();
-                        setState(() {
-                          _employeeRole.text = roleName;
-                        });
+            Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _employeeNameTextController,
+                      style: textTheme.bodyLarge?.copyWith(
+                        color: AppColors.focusedTextColor,
+                      ),
+                      decoration: InputDecoration(
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SvgPicture.asset(
+                            EmpAssets.personIcon,
+                          ),
+                        ),
+                        hintText: 'Employee name',
+                        hintStyle: textTheme.bodyLarge?.copyWith(
+                          color: AppColors.muteText,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          borderSide: BorderSide(
+                            color: AppColors.border,
+                          ),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value?.isEmpty ?? false) {
+                          return 'Name is required';
+                        }
+                        return null;
                       },
                     ),
-                  ),
-                );
-              },
-              readOnly: true,
-              controller: _employeeRole,
-              style: textTheme.bodyLarge?.copyWith(
-                color: AppColors.focusedTextColor,
-              ),
-              decoration: InputDecoration(
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SvgPicture.asset(
-                    EmpAssets.workIcon,
-                  ),
-                ),
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SvgPicture.asset(
-                    EmpAssets.arrowDropdown,
-                  ),
-                ),
-                hintText: 'Select Role',
-                hintStyle: textTheme.bodyLarge?.copyWith(
-                  color: AppColors.muteText,
-                  fontWeight: FontWeight.w400,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: BorderSide(
-                    color: AppColors.border,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    onTap: () async {
-                      final date = await _showDatePicker();
-                      if (date != null) {
-                        _startDate.text = dateTimeFormatter.format(date);
-                      }
-                    },
-                    readOnly: true,
-                    controller: _startDate,
-                    decoration: InputDecoration(
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: SvgPicture.asset(
-                          EmpAssets.eventIcon,
-                        ),
-                      ),
-                      hintText: 'Today',
-                      hintStyle: textTheme.bodyLarge?.copyWith(
-                        color: AppColors.muteText,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        borderSide: BorderSide(
-                          color: AppColors.border,
-                        ),
-                      ),
+                    const SizedBox(
+                      height: 24,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                SvgPicture.asset(
-                  EmpAssets.arrowRight,
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                Expanded(
-                  child: TextFormField(
-                    onTap: () async {
-                      final date = await _showDatePicker();
-                      if (date != null) {
-                        _endDate.text = dateTimeFormatter.format(date);
-                      }
-                    },
-                    readOnly: true,
-                    controller: _endDate,
-                    decoration: InputDecoration(
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: SvgPicture.asset(
-                          EmpAssets.eventIcon,
+                    TextFormField(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => SizedBox(
+                            height: 300,
+                            width: double.maxFinite,
+                            child: RoleBottomSheet(
+                              onTap: (roleName) {
+                                context.pop();
+                                setState(() {
+                                  _employeeRoleTextController.text = roleName;
+                                });
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                      readOnly: true,
+                      controller: _employeeRoleTextController,
+                      style: textTheme.bodyLarge?.copyWith(
+                        color: AppColors.focusedTextColor,
+                      ),
+                      decoration: InputDecoration(
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: SvgPicture.asset(
+                            EmpAssets.workIcon,
+                          ),
+                        ),
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: SvgPicture.asset(
+                            EmpAssets.arrowDropdown,
+                          ),
+                        ),
+                        hintText: 'Select Role',
+                        hintStyle: textTheme.bodyLarge?.copyWith(
+                          color: AppColors.muteText,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          borderSide: BorderSide(
+                            color: AppColors.border,
+                          ),
                         ),
                       ),
-                      hintText: 'No date',
-                      hintStyle: textTheme.bodyLarge?.copyWith(
-                        color: AppColors.muteText,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        borderSide: BorderSide(
-                          color: AppColors.border,
-                        ),
-                      ),
+                      validator: (value) {
+                        if (value?.isEmpty ?? false) {
+                          return 'Role is required';
+                        }
+                        return null;
+                      },
                     ),
-                  ),
-                ),
-              ],
-            ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            onTap: () async {
+                              final date = await _showDatePicker();
+                              if (date != null) {
+                                _startDate = date;
+                                _startDateTextController.text =
+                                    dateTimeFormatter.format(date);
+                              }
+                            },
+                            readOnly: true,
+                            controller: _startDateTextController,
+                            decoration: InputDecoration(
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: SvgPicture.asset(
+                                  EmpAssets.eventIcon,
+                                ),
+                              ),
+                              hintText: 'Today',
+                              hintStyle: textTheme.bodyLarge?.copyWith(
+                                color: AppColors.muteText,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                borderSide: BorderSide(
+                                  color: AppColors.border,
+                                ),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value?.isEmpty ?? false) {
+                                return 'Start date is required';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        SvgPicture.asset(
+                          EmpAssets.arrowRight,
+                        ),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            onTap: () async {
+                              final date = await _showDatePicker();
+                              if (date != null) {
+                                _endDate = date;
+                                _endDateTextController.text =
+                                    dateTimeFormatter.format(date);
+                              }
+                            },
+                            readOnly: true,
+                            controller: _endDateTextController,
+                            decoration: InputDecoration(
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: SvgPicture.asset(
+                                  EmpAssets.eventIcon,
+                                ),
+                              ),
+                              hintText: 'No date',
+                              hintStyle: textTheme.bodyLarge?.copyWith(
+                                color: AppColors.muteText,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                borderSide: BorderSide(
+                                  color: AppColors.border,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -218,7 +260,9 @@ class _EmployeeViewState extends State<EmployeeView> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pop();
+                    },
                     style: TextButton.styleFrom(
                       elevation: 0,
                       backgroundColor: AppColors.inactiveButton,
@@ -237,26 +281,19 @@ class _EmployeeViewState extends State<EmployeeView> {
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      final date = DateTime.now();
-                      context.read<EmployeeAddBloc>()
-                        ..add(
-                          AddEmployee(
-                            employee: Employee(
-                              name: 'Phantom Boy',
-                              role: 'Flutter Developer',
-                              startDate: date,
-                            ),
-                          ),
-                        )
-                        ..add(
-                          AddEmployee(
-                            employee: Employee(
-                                name: 'Harsh Chaurasia',
-                                role: 'Full-Stack Developer',
-                                startDate: date.subtract(Duration(days: 30)),
-                                endDate: date),
-                          ),
-                        );
+                      if (_formKey.currentState!.validate()) {
+                        context.read<EmployeeAddBloc>().add(
+                              AddEmployee(
+                                employee: Employee(
+                                  name: _employeeNameTextController.text,
+                                  role: _employeeRoleTextController.text,
+                                  startDate: _startDate,
+                                  endDate: _endDate,
+                                ),
+                              ),
+                            );
+                        _resetFields();
+                      }
                     },
                     style: TextButton.styleFrom(
                       elevation: 0,
