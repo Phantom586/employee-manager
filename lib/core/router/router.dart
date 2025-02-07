@@ -4,15 +4,18 @@ import 'package:go_router/go_router.dart';
 
 final router = GoRouter(initialLocation: '/', routes: [
   GoRoute(
+    name: HomeView.routeName,
     path: '/',
     builder: (context, state) => const HomeView(),
   ),
   GoRoute(
-    path: '/add-employee',
-    builder: (context, state) => const EmployeeEditView(),
+    name: EmployeeAddView.routeName,
+    path: '/employee/add',
+    builder: (context, state) => const EmployeeAddView(),
   ),
   GoRoute(
-    path: '/edit-employee',
-    builder: (context, state) => const EmployeeAddView(),
+    name: EmployeeEditView.routeName,
+    path: '/employee/edit',
+    builder: (context, state) => const EmployeeEditView(),
   ),
 ]);

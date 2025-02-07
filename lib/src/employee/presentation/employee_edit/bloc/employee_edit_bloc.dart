@@ -27,7 +27,7 @@ class EmployeeEditBloc extends Bloc<EmployeeEditEvent, EmployeeEditState> {
         ) {
     on<FetchEmployeeById>(_fetchEmployeeById);
     on<EditEmployeeById>(_editEmployeeById);
-    on<DeleteEmployeeById>(_deleteEmployeeById);
+    on<DeleteEmployeeByIdE>(_deleteEmployeeById);
   }
 
   Future<void> _fetchEmployeeById(
@@ -67,7 +67,7 @@ class EmployeeEditBloc extends Bloc<EmployeeEditEvent, EmployeeEditState> {
   }
 
   Future<void> _deleteEmployeeById(
-    DeleteEmployeeById event,
+    DeleteEmployeeByIdE event,
     Emitter<EmployeeEditState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));

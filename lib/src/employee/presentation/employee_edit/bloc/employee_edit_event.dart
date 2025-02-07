@@ -9,5 +9,5 @@ class EmployeeEditEvent with _$EmployeeEditEvent {
   }) = EditEmployeeById;
   const factory EmployeeEditEvent.deleteEmployeeById({
     required int employeeId,
-  }) = DeleteEmployeeById;
+  }) = DeleteEmployeeByIdE;
 }

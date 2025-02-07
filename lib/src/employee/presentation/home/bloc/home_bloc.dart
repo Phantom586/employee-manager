@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
-import 'package:employee_manager/src/employee/domain/index.dart';
 import 'package:employee_manager/src/employee/index.dart'
     show
         FetchCurrentEmployeesUseCase,
@@ -60,6 +61,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(isLoading: true));
 
     final (currentEmployees, previousEmployees) = await _fetchEmployees();
+    log('CurrentEmployees: ${currentEmployees.toString()}');
+    log('PreviousEmployees: ${previousEmployees.toString()}');
 
     emit(
       state.copyWith(
