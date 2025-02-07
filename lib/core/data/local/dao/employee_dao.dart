@@ -4,20 +4,10 @@ import 'package:floor/floor.dart';
 
 @dao
 abstract class EmployeeDao {
-  @Query(
-    '''
-    SELECT * FROM ${SQLiteTableNames.employee} WHERE 
-    startDate is NOT NULL AND endDate is NULL
-    ''',
-  )
+  @Query('SELECT * FROM ${SQLiteTableNames.employee} WHERE endDate = ""')
   Future<List<EmployeeEntity>?> getCurrentEmployees();
 
-  @Query(
-    '''
-    SELECT * FROM ${SQLiteTableNames.employee} WHERE 
-    startDate is NOT NULL AND endDate is NOT NULL
-    ''',
-  )
+  @Query('SELECT * FROM ${SQLiteTableNames.employee} WHERE endDate != ""')
   Future<List<EmployeeEntity>?> getPreviousEmployees();
 
   @Insert(onConflict: OnConflictStrategy.replace)

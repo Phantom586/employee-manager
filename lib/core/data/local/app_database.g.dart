@@ -137,7 +137,7 @@ class _$EmployeeDao extends EmployeeDao {
   @override
   Future<List<EmployeeEntity>?> getCurrentEmployees() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM employee WHERE      startDate is NOT NULL AND endDate is NULL',
+        'SELECT * FROM employee WHERE endDate = \"\"',
         mapper: (Map<String, Object?> row) => EmployeeEntity(
             id: row['id'] as int?,
             name: row['name'] as String?,
@@ -150,7 +150,7 @@ class _$EmployeeDao extends EmployeeDao {
   @override
   Future<List<EmployeeEntity>?> getPreviousEmployees() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM employee WHERE      startDate is NOT NULL AND endDate is NOT NULL',
+        'SELECT * FROM employee WHERE endDate != \"\"',
         mapper: (Map<String, Object?> row) => EmployeeEntity(
             id: row['id'] as int?,
             name: row['name'] as String?,

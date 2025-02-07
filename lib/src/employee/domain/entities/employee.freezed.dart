@@ -152,10 +152,10 @@ class __$$EmployeeImplCopyWithImpl<$Res>
 
 class _$EmployeeImpl implements _Employee {
   const _$EmployeeImpl(
-      {required this.id,
+      {this.id,
       required this.name,
       required this.role,
-      this.startDate,
+      required this.startDate,
       this.endDate});
 
   @override
@@ -202,10 +202,10 @@ class _$EmployeeImpl implements _Employee {
 
 abstract class _Employee implements Employee {
   const factory _Employee(
-      {required final int? id,
+      {final int? id,
       required final String? name,
       required final String? role,
-      final DateTime? startDate,
+      required final DateTime? startDate,
       final DateTime? endDate}) = _$EmployeeImpl;
 
   @override

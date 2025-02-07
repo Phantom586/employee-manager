@@ -1,1 +1,2 @@
-export 'view/employee_add.dart';
+export 'view/index.dart';
+export './bloc/index.dart';

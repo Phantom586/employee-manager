@@ -1,1 +1,2 @@
-export 'view/home.dart';
+export 'view/index.dart';
+export './bloc/index.dart';

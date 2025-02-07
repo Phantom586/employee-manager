@@ -6,10 +6,10 @@ part 'employee.freezed.dart';
 @freezed
 class Employee with _$Employee {
   const factory Employee({
-    required int? id,
+    int? id,
     required String? name,
     required String? role,
-    DateTime? startDate,
+    required DateTime? startDate,
     DateTime? endDate,
   }) = _Employee;
 

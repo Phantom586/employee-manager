@@ -42,21 +42,21 @@ mixin _$EmployeeEditEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(FetchEmployeeById value) fetchEmployeeById,
     required TResult Function(EditEmployeeById value) editEmployeeById,
-    required TResult Function(DeleteEmployeeById value) deleteEmployeeById,
+    required TResult Function(DeleteEmployeeByIdE value) deleteEmployeeById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchEmployeeById value)? fetchEmployeeById,
     TResult? Function(EditEmployeeById value)? editEmployeeById,
-    TResult? Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult? Function(DeleteEmployeeByIdE value)? deleteEmployeeById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchEmployeeById value)? fetchEmployeeById,
     TResult Function(EditEmployeeById value)? editEmployeeById,
-    TResult Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult Function(DeleteEmployeeByIdE value)? deleteEmployeeById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -189,7 +189,7 @@ class _$FetchEmployeeByIdImpl implements FetchEmployeeById {
   TResult map<TResult extends Object?>({
     required TResult Function(FetchEmployeeById value) fetchEmployeeById,
     required TResult Function(EditEmployeeById value) editEmployeeById,
-    required TResult Function(DeleteEmployeeById value) deleteEmployeeById,
+    required TResult Function(DeleteEmployeeByIdE value) deleteEmployeeById,
   }) {
     return fetchEmployeeById(this);
   }
@@ -199,7 +199,7 @@ class _$FetchEmployeeByIdImpl implements FetchEmployeeById {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchEmployeeById value)? fetchEmployeeById,
     TResult? Function(EditEmployeeById value)? editEmployeeById,
-    TResult? Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult? Function(DeleteEmployeeByIdE value)? deleteEmployeeById,
   }) {
     return fetchEmployeeById?.call(this);
   }
@@ -209,7 +209,7 @@ class _$FetchEmployeeByIdImpl implements FetchEmployeeById {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchEmployeeById value)? fetchEmployeeById,
     TResult Function(EditEmployeeById value)? editEmployeeById,
-    TResult Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult Function(DeleteEmployeeByIdE value)? deleteEmployeeById,
     required TResult orElse(),
   }) {
     if (fetchEmployeeById != null) {
@@ -350,7 +350,7 @@ class _$EditEmployeeByIdImpl implements EditEmployeeById {
   TResult map<TResult extends Object?>({
     required TResult Function(FetchEmployeeById value) fetchEmployeeById,
     required TResult Function(EditEmployeeById value) editEmployeeById,
-    required TResult Function(DeleteEmployeeById value) deleteEmployeeById,
+    required TResult Function(DeleteEmployeeByIdE value) deleteEmployeeById,
   }) {
     return editEmployeeById(this);
   }
@@ -360,7 +360,7 @@ class _$EditEmployeeByIdImpl implements EditEmployeeById {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchEmployeeById value)? fetchEmployeeById,
     TResult? Function(EditEmployeeById value)? editEmployeeById,
-    TResult? Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult? Function(DeleteEmployeeByIdE value)? deleteEmployeeById,
   }) {
     return editEmployeeById?.call(this);
   }
@@ -370,7 +370,7 @@ class _$EditEmployeeByIdImpl implements EditEmployeeById {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchEmployeeById value)? fetchEmployeeById,
     TResult Function(EditEmployeeById value)? editEmployeeById,
-    TResult Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult Function(DeleteEmployeeByIdE value)? deleteEmployeeById,
     required TResult orElse(),
   }) {
     if (editEmployeeById != null) {
@@ -394,20 +394,20 @@ abstract class EditEmployeeById implements EmployeeEditEvent {
 }
 
 /// @nodoc
-abstract class _$$DeleteEmployeeByIdImplCopyWith<$Res> {
-  factory _$$DeleteEmployeeByIdImplCopyWith(_$DeleteEmployeeByIdImpl value,
-          $Res Function(_$DeleteEmployeeByIdImpl) then) =
-      __$$DeleteEmployeeByIdImplCopyWithImpl<$Res>;
+abstract class _$$DeleteEmployeeByIdEImplCopyWith<$Res> {
+  factory _$$DeleteEmployeeByIdEImplCopyWith(_$DeleteEmployeeByIdEImpl value,
+          $Res Function(_$DeleteEmployeeByIdEImpl) then) =
+      __$$DeleteEmployeeByIdEImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int employeeId});
 }
 
 /// @nodoc
-class __$$DeleteEmployeeByIdImplCopyWithImpl<$Res>
-    extends _$EmployeeEditEventCopyWithImpl<$Res, _$DeleteEmployeeByIdImpl>
-    implements _$$DeleteEmployeeByIdImplCopyWith<$Res> {
-  __$$DeleteEmployeeByIdImplCopyWithImpl(_$DeleteEmployeeByIdImpl _value,
-      $Res Function(_$DeleteEmployeeByIdImpl) _then)
+class __$$DeleteEmployeeByIdEImplCopyWithImpl<$Res>
+    extends _$EmployeeEditEventCopyWithImpl<$Res, _$DeleteEmployeeByIdEImpl>
+    implements _$$DeleteEmployeeByIdEImplCopyWith<$Res> {
+  __$$DeleteEmployeeByIdEImplCopyWithImpl(_$DeleteEmployeeByIdEImpl _value,
+      $Res Function(_$DeleteEmployeeByIdEImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of EmployeeEditEvent
@@ -417,7 +417,7 @@ class __$$DeleteEmployeeByIdImplCopyWithImpl<$Res>
   $Res call({
     Object? employeeId = null,
   }) {
-    return _then(_$DeleteEmployeeByIdImpl(
+    return _then(_$DeleteEmployeeByIdEImpl(
       employeeId: null == employeeId
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
@@ -428,8 +428,8 @@ class __$$DeleteEmployeeByIdImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
-  const _$DeleteEmployeeByIdImpl({required this.employeeId});
+class _$DeleteEmployeeByIdEImpl implements DeleteEmployeeByIdE {
+  const _$DeleteEmployeeByIdEImpl({required this.employeeId});
 
   @override
   final int employeeId;
@@ -443,7 +443,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeleteEmployeeByIdImpl &&
+            other is _$DeleteEmployeeByIdEImpl &&
             (identical(other.employeeId, employeeId) ||
                 other.employeeId == employeeId));
   }
@@ -456,8 +456,8 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeleteEmployeeByIdImplCopyWith<_$DeleteEmployeeByIdImpl> get copyWith =>
-      __$$DeleteEmployeeByIdImplCopyWithImpl<_$DeleteEmployeeByIdImpl>(
+  _$$DeleteEmployeeByIdEImplCopyWith<_$DeleteEmployeeByIdEImpl> get copyWith =>
+      __$$DeleteEmployeeByIdEImplCopyWithImpl<_$DeleteEmployeeByIdEImpl>(
           this, _$identity);
 
   @override
@@ -499,7 +499,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
   TResult map<TResult extends Object?>({
     required TResult Function(FetchEmployeeById value) fetchEmployeeById,
     required TResult Function(EditEmployeeById value) editEmployeeById,
-    required TResult Function(DeleteEmployeeById value) deleteEmployeeById,
+    required TResult Function(DeleteEmployeeByIdE value) deleteEmployeeById,
   }) {
     return deleteEmployeeById(this);
   }
@@ -509,7 +509,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchEmployeeById value)? fetchEmployeeById,
     TResult? Function(EditEmployeeById value)? editEmployeeById,
-    TResult? Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult? Function(DeleteEmployeeByIdE value)? deleteEmployeeById,
   }) {
     return deleteEmployeeById?.call(this);
   }
@@ -519,7 +519,7 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchEmployeeById value)? fetchEmployeeById,
     TResult Function(EditEmployeeById value)? editEmployeeById,
-    TResult Function(DeleteEmployeeById value)? deleteEmployeeById,
+    TResult Function(DeleteEmployeeByIdE value)? deleteEmployeeById,
     required TResult orElse(),
   }) {
     if (deleteEmployeeById != null) {
@@ -529,16 +529,16 @@ class _$DeleteEmployeeByIdImpl implements DeleteEmployeeById {
   }
 }
 
-abstract class DeleteEmployeeById implements EmployeeEditEvent {
-  const factory DeleteEmployeeById({required final int employeeId}) =
-      _$DeleteEmployeeByIdImpl;
+abstract class DeleteEmployeeByIdE implements EmployeeEditEvent {
+  const factory DeleteEmployeeByIdE({required final int employeeId}) =
+      _$DeleteEmployeeByIdEImpl;
 
   int get employeeId;
 
   /// Create a copy of EmployeeEditEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeleteEmployeeByIdImplCopyWith<_$DeleteEmployeeByIdImpl> get copyWith =>
+  _$$DeleteEmployeeByIdEImplCopyWith<_$DeleteEmployeeByIdEImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

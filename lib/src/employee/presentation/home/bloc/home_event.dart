@@ -6,4 +6,6 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.deleteEmployeeById({required int employeeId}) =
       DeleteEmployeeById;
   const factory HomeEvent.deleteAllEmployees() = DeleteAllEmployees;
+  const factory HomeEvent.undoDeleteEmployee({required Employee employee}) =
+      UndoDeleteEmployee;
 }

@@ -13,7 +13,7 @@ class EmployeeEntity extends Equatable {
   final DateTime? endDate;
 
   const EmployeeEntity(
-      {required this.id,
+      {this.id,
       required this.name,
       required this.role,
       required this.startDate,
@@ -37,7 +37,7 @@ class EmployeeEntity extends Equatable {
       );
 
   @override
-  List<Object?> get props => [id, name, role, startDate, endDate];
+  List<Object?> get props => [id, name, role, startDate];
 }
 
 extension EmployeeEntityList on List<EmployeeEntity> {
