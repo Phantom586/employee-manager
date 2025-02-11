@@ -4,8 +4,7 @@ import 'package:employee_manager/src/employee/index.dart'
         DeleteEmployeeByIdE,
         EmployeeEditBloc,
         EmployeeEditState,
-        EmployeeEditView,
-        FetchEmployeeById;
+        EmployeeEditView;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
