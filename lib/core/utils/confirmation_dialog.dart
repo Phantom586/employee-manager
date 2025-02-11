@@ -1,4 +1,5 @@
 import 'package:employee_manager/core/index.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmationDialog extends StatelessWidget {
@@ -21,7 +22,7 @@ class ConfirmationDialog extends StatelessWidget {
         ),
         child: Container(
           padding: const EdgeInsets.fromLTRB(25, 40, 25, 16),
-          width: double.maxFinite,
+          width: kIsWeb ? null : double.maxFinite,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),

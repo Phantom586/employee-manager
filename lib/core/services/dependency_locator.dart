@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:employee_manager/core/index.dart'
     show $FloorAppDatabase, AppDatabase, EmployeeDao;
 import 'package:employee_manager/src/employee/index.dart'
@@ -16,17 +18,27 @@ import 'package:employee_manager/src/employee/index.dart'
         HomeBloc,
         EmployeeEditBloc,
         EmployeeAddBloc;
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
 
 void initDepedencyLocator() {
-  getIt
-    ..registerSingletonAsync<AppDatabase>(
+  // Database
+  if (kIsWeb) {
+    getIt.registerSingletonAsync<AppDatabase>(
+      () async => $FloorAppDatabase.inMemoryDatabaseBuilder().build(),
+      dispose: (db) async => db.close(),
+    );
+  } else {
+    getIt.registerSingletonAsync<AppDatabase>(
       () async =>
           $FloorAppDatabase.databaseBuilder('app_database_v1.db').build(),
       dispose: (db) async => db.close(),
-    )
+    );
+  }
+  // DAOs
+  getIt
     ..registerLazySingleton<EmployeeDao>(
       () => getIt<AppDatabase>().employeeDao,
     )
