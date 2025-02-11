@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:employee_manager/core/index.dart'
     show $FloorAppDatabase, AppDatabase, EmployeeDao;
 import 'package:employee_manager/src/employee/index.dart'
